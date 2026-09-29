@@ -1,0 +1,44 @@
+class_name Player
+
+extends CharacterBody2D
+
+@export var gravity: int = 300
+@export var speed: int = 100
+@export var jump_speed: int = 200
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
+
+func _physics_process(delta: float) -> void:
+	if !is_on_floor():
+		velocity.y += gravity * delta
+
+		if velocity.y >= 500:
+			velocity.y = 500
+
+	if Input.is_action_just_pressed("jump") && is_on_floor():
+		velocity.y = -jump_speed
+
+	var direction: float = Input.get_axis("move_left", "move_right")
+
+	if direction != 0:
+		animated_sprite_2d.flip_h = direction == -1
+
+	velocity.x = direction * speed
+
+	move_and_slide()
+
+	update_animations(direction)
+
+
+func update_animations(direction: float) -> void:
+	if is_on_floor():
+		if direction == 0:
+			animated_sprite_2d.play("idle")
+		else:
+			animated_sprite_2d.play("run")
+	else:
+		if velocity.y < 0:
+			animated_sprite_2d.play("jump")
+		else:
+			animated_sprite_2d.play("fall")
