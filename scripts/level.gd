@@ -1,4 +1,3 @@
-
 extends Node2D
 
 @onready var start_position: Marker2D = $StartPosition
