@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://c5hg7lddiimbq" path="res://scenes/player.tscn" id="2_w7c3h"]
 [ext_resource type="Texture2D" uid="uid://dqoaktxad8s4" path="res://icon.svg" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://bl7inl4cv3pi1" path="res://scenes/jump_pad.tscn" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://8x6rkmdhvyhc" path="res://scenes/saw.tscn" id="5_ppgk2"]
+[ext_resource type="PackedScene" uid="uid://4otdebl7vy6w" path="res://scenes/spike_ball.tscn" id="6_2r41h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
 size = Vector2(1003, 44)
@@ -42,9 +44,26 @@ position = Vector2(152, 211)
 scale = Vector2(4.3125, 0.15625001)
 texture = ExtResource("3_w8frs")
 
-[node name="JumpPad" parent="." unique_id=1369864182 instance=ExtResource("4_mx8sn")]
+[node name="Objects" type="Node" parent="." unique_id=2072797980]
+
+[node name="JumpPad" parent="Objects" unique_id=1369864182 instance=ExtResource("4_mx8sn")]
+position = Vector2(196, 187)
+collision_mask = 2
+
+[node name="JumpPad2" parent="Objects" unique_id=2060433491 instance=ExtResource("4_mx8sn")]
 position = Vector2(161, 187)
 collision_mask = 2
 
+[node name="Traps" type="Node" parent="." unique_id=659103465]
+
+[node name="Saw" parent="Traps" unique_id=538702520 instance=ExtResource("5_ppgk2")]
+position = Vector2(72, 186)
+
+[node name="SpikeBall" parent="Traps" unique_id=1040595279 instance=ExtResource("6_2r41h")]
+position = Vector2(121, 189)
+
 [connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]
-[connection signal="body_exited" from="JumpPad" to="JumpPad" method="_on_body_exited"]
+[connection signal="body_exited" from="Objects/JumpPad" to="Objects/JumpPad" method="_on_body_exited"]
+[connection signal="body_exited" from="Objects/JumpPad2" to="Objects/JumpPad2" method="_on_body_exited"]
+[connection signal="touched_player" from="Traps/Saw" to="." method="_on_trap_touched_player"]
+[connection signal="touched_player" from="Traps/SpikeBall" to="." method="_on_trap_touched_player"]
