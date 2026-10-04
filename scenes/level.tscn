@@ -1,23 +1,20 @@
-[gd_scene format=3 uid="uid://b7l8l35lewdig"]
+[gd_scene format=4 uid="uid://b7l8l35lewdig"]
 
 [ext_resource type="Script" uid="uid://b6hntm6m1kkey" path="res://scripts/level.gd" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://c5hg7lddiimbq" path="res://scenes/player.tscn" id="2_w7c3h"]
-[ext_resource type="Texture2D" uid="uid://dqoaktxad8s4" path="res://icon.svg" id="3_w8frs"]
 [ext_resource type="PackedScene" uid="uid://bl7inl4cv3pi1" path="res://scenes/jump_pad.tscn" id="4_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://8x6rkmdhvyhc" path="res://scenes/saw.tscn" id="5_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://4otdebl7vy6w" path="res://scenes/spike_ball.tscn" id="6_2r41h"]
+[ext_resource type="PackedScene" uid="uid://dxlonqono4fy4" path="res://scenes/world_tiles.tscn" id="6_klq6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
 size = Vector2(1003, 44)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_blt1j"]
-size = Vector2(552, 20)
 
 [node name="Level" type="Node2D" unique_id=1760409615]
 script = ExtResource("1_2q6dc")
 
 [node name="Player" parent="." unique_id=106189195 instance=ExtResource("2_w7c3h")]
-position = Vector2(232, 99)
+position = Vector2(195, 101)
 collision_layer = 2
 collision_mask = 5
 
@@ -32,38 +29,38 @@ collision_mask = 2
 position = Vector2(218.5, 281)
 shape = SubResource("RectangleShape2D_w8frs")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1114970863]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1759010216]
-position = Vector2(152, 211)
-shape = SubResource("RectangleShape2D_blt1j")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=180374993]
-position = Vector2(152, 211)
-scale = Vector2(4.3125, 0.15625001)
-texture = ExtResource("3_w8frs")
-
 [node name="Objects" type="Node" parent="." unique_id=2072797980]
 
 [node name="JumpPad" parent="Objects" unique_id=1369864182 instance=ExtResource("4_mx8sn")]
-position = Vector2(196, 187)
+position = Vector2(194, 163)
 collision_mask = 2
 
 [node name="JumpPad2" parent="Objects" unique_id=2060433491 instance=ExtResource("4_mx8sn")]
-position = Vector2(161, 187)
+position = Vector2(159, 163)
+collision_mask = 2
+
+[node name="JumpPad3" parent="Objects" unique_id=700020391 instance=ExtResource("4_mx8sn")]
+position = Vector2(4, 162)
 collision_mask = 2
 
 [node name="Traps" type="Node" parent="." unique_id=659103465]
 
-[node name="Saw" parent="Traps" unique_id=538702520 instance=ExtResource("5_ppgk2")]
-position = Vector2(72, 186)
+[node name="Saw" parent="Traps" unique_id=538702520 groups=["trap"] instance=ExtResource("5_ppgk2")]
+position = Vector2(77, 161)
 
-[node name="SpikeBall" parent="Traps" unique_id=1040595279 instance=ExtResource("6_2r41h")]
-position = Vector2(121, 189)
+[node name="Saw2" parent="Traps" unique_id=1461727144 groups=["trap"] instance=ExtResource("5_ppgk2")]
+position = Vector2(64, 120)
+
+[node name="SpikeBall" parent="Traps" unique_id=1040595279 groups=["trap"] instance=ExtResource("6_2r41h")]
+position = Vector2(326, 163)
+
+[node name="SpikeBall2" parent="Traps" unique_id=411834447 groups=["trap"] instance=ExtResource("6_2r41h")]
+position = Vector2(242, 159)
+
+[node name="WorldTiles" parent="." unique_id=607574519 instance=ExtResource("6_klq6b")]
+tile_map_data = PackedByteArray("AAD1/wsAAQAGAAAAAAD1/wwAAQAGAAEAAAD1/w0AAQAGAAIAAAAhAAsAAQAIAAAAAAAhAAwAAQAIAAEAAAAhAA0AAQAIAAIAAAD2/wsAAQAHAAAAAAD2/wwAAQAHAAEAAAD2/w0AAQAHAAIAAAD3/wsAAQAHAAAAAAD3/wwAAQAHAAEAAAD3/w0AAQAHAAIAAAD4/wsAAQAHAAAAAAD4/wwAAQAHAAEAAAD4/w0AAQAHAAIAAAD5/wsAAQAHAAAAAAD5/wwAAQAHAAEAAAD5/w0AAQAHAAIAAAD6/wsAAQAHAAAAAAD6/wwAAQAHAAEAAAD6/w0AAQAHAAIAAAD7/wsAAQAHAAAAAAD7/wwAAQAHAAEAAAD7/w0AAQAHAAIAAAD8/wsAAQAHAAAAAAD8/wwAAQAHAAEAAAD8/w0AAQAHAAIAAAD9/wsAAQAHAAAAAAD9/wwAAQAHAAEAAAD9/w0AAQAHAAIAAAD+/wsAAQAHAAAAAAD+/wwAAQAHAAEAAAD+/w0AAQAHAAIAAAD//wsAAQAHAAAAAAD//wwAAQAHAAEAAAD//w0AAQAHAAIAAAAAAAsAAQAHAAAAAAAAAAwAAQAHAAEAAAAAAA0AAQAHAAIAAAABAAsAAQAHAAAAAAABAAwAAQAHAAEAAAABAA0AAQAHAAIAAAACAAsAAQAHAAAAAAACAAwAAQAHAAEAAAACAA0AAQAHAAIAAAADAAsAAQAHAAAAAAADAAwAAQAHAAEAAAADAA0AAQAHAAIAAAAEAAsAAQAHAAAAAAAEAAwAAQAHAAEAAAAEAA0AAQAHAAIAAAAFAAsAAQAHAAAAAAAFAAwAAQAHAAEAAAAFAA0AAQAHAAIAAAAGAAsAAQAHAAAAAAAGAAwAAQAHAAEAAAAGAA0AAQAHAAIAAAAHAAsAAQAHAAAAAAAHAAwAAQAHAAEAAAAHAA0AAQAHAAIAAAAIAAsAAQAHAAAAAAAIAAwAAQAHAAEAAAAIAA0AAQAHAAIAAAAJAAsAAQAHAAAAAAAJAAwAAQAHAAEAAAAJAA0AAQAHAAIAAAAKAAsAAQAHAAAAAAAKAAwAAQAHAAEAAAAKAA0AAQAHAAIAAAALAAsAAQAHAAAAAAALAAwAAQAHAAEAAAALAA0AAQAHAAIAAAAMAAsAAQAHAAAAAAAMAAwAAQAHAAEAAAAMAA0AAQAHAAIAAAANAAsAAQAHAAAAAAANAAwAAQAHAAEAAAANAA0AAQAHAAIAAAAOAAsAAQAHAAAAAAAOAAwAAQAHAAEAAAAOAA0AAQAHAAIAAAAPAAsAAQAHAAAAAAAPAAwAAQAHAAEAAAAPAA0AAQAHAAIAAAAQAAsAAQAHAAAAAAAQAAwAAQAHAAEAAAAQAA0AAQAHAAIAAAARAAsAAQAHAAAAAAARAAwAAQAHAAEAAAARAA0AAQAHAAIAAAASAAsAAQAHAAAAAAASAAwAAQAHAAEAAAASAA0AAQAHAAIAAAATAAsAAQAHAAAAAAATAAwAAQAHAAEAAAATAA0AAQAHAAIAAAAUAAsAAQAHAAAAAAAUAAwAAQAHAAEAAAAUAA0AAQAHAAIAAAAVAAsAAQAHAAAAAAAVAAwAAQAHAAEAAAAVAA0AAQAHAAIAAAAWAAsAAQAHAAAAAAAWAAwAAQAHAAEAAAAWAA0AAQAHAAIAAAAXAAsAAQAHAAAAAAAXAAwAAQAHAAEAAAAXAA0AAQAHAAIAAAAYAAsAAQAHAAAAAAAYAAwAAQAHAAEAAAAYAA0AAQAHAAIAAAAZAAsAAQAHAAAAAAAZAAwAAQAHAAEAAAAZAA0AAQAHAAIAAAAaAAsAAQAHAAAAAAAaAAwAAQAHAAEAAAAaAA0AAQAHAAIAAAAbAAsAAQAHAAAAAAAbAAwAAQAHAAEAAAAbAA0AAQAHAAIAAAAcAAsAAQAHAAAAAAAcAAwAAQAHAAEAAAAcAA0AAQAHAAIAAAAdAAsAAQAHAAAAAAAdAAwAAQAHAAEAAAAdAA0AAQAHAAIAAAAeAAsAAQAHAAAAAAAeAAwAAQAHAAEAAAAeAA0AAQAHAAIAAAAfAAsAAQAHAAAAAAAfAAwAAQAHAAEAAAAfAA0AAQAHAAIAAAAgAAsAAQAHAAAAAAAgAAwAAQAHAAEAAAAgAA0AAQAHAAIAAAAbAAgAAQARAAEAAAAcAAgAAQASAAEAAAAdAAgAAQATAAEAAAA=")
 
 [connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]
 [connection signal="body_exited" from="Objects/JumpPad" to="Objects/JumpPad" method="_on_body_exited"]
 [connection signal="body_exited" from="Objects/JumpPad2" to="Objects/JumpPad2" method="_on_body_exited"]
-[connection signal="touched_player" from="Traps/Saw" to="." method="_on_trap_touched_player"]
-[connection signal="touched_player" from="Traps/SpikeBall" to="." method="_on_trap_touched_player"]
+[connection signal="body_exited" from="Objects/JumpPad3" to="Objects/JumpPad3" method="_on_body_exited"]

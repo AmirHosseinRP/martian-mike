@@ -32,6 +32,10 @@ window/stretch/aspect="expand"
 
 enabled=PackedStringArray("res://addons/pretty-gd/plugin.cfg", "res://addons/terminal/plugin.cfg")
 
+[global_group]
+
+trap=""
+
 [input]
 
 move_right={
