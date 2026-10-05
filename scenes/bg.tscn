@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d0liywmywp6ur"]
+
+[ext_resource type="Script" uid="uid://bpgrs552dbb8i" path="res://scripts/bg.gd" id="1_dpp0m"]
+
+[node name="BG" type="Parallax2D" unique_id=2046243649]
+repeat_size = Vector2(640, 640)
+script = ExtResource("1_dpp0m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=745572780]
+texture_repeat = 2
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 640)
