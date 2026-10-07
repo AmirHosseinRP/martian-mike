@@ -2,25 +2,23 @@
 
 [ext_resource type="Script" uid="uid://b6hntm6m1kkey" path="res://scripts/level.gd" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://d0liywmywp6ur" path="res://scenes/bg.tscn" id="2_klq6b"]
+[ext_resource type="PackedScene" uid="uid://dqcidrv8gx6lu" path="res://scenes/level_2.tscn" id="2_olg7q"]
 [ext_resource type="PackedScene" uid="uid://c5hg7lddiimbq" path="res://scenes/player.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://bl7inl4cv3pi1" path="res://scenes/jump_pad.tscn" id="4_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://8x6rkmdhvyhc" path="res://scenes/saw.tscn" id="5_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://4otdebl7vy6w" path="res://scenes/spike_ball.tscn" id="6_2r41h"]
 [ext_resource type="PackedScene" uid="uid://dxlonqono4fy4" path="res://scenes/world_tiles.tscn" id="6_klq6b"]
 [ext_resource type="PackedScene" uid="uid://3attfj0x0mj6" path="res://scenes/start_platform.tscn" id="8_b121j"]
+[ext_resource type="PackedScene" uid="uid://b3r1sp5ubt55e" path="res://scenes/finish_platform.tscn" id="9_8c41q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w8frs"]
 size = Vector2(1003, 44)
 
 [node name="Level" type="Node2D" unique_id=1760409615]
 script = ExtResource("1_2q6dc")
+next_level = ExtResource("2_olg7q")
 
 [node name="BG" parent="." unique_id=2046243649 instance=ExtResource("2_klq6b")]
-
-[node name="Player" parent="." unique_id=106189195 instance=ExtResource("2_w7c3h")]
-position = Vector2(195, 101)
-collision_layer = 2
-collision_mask = 5
 
 [node name="Deathzone" type="Area2D" parent="." unique_id=894631665]
 collision_layer = 4
@@ -63,6 +61,14 @@ tile_map_data = PackedByteArray("AAD+/wsAAQAJAAEAAAD+/woAAQAIAAEAAAD+/wkAAQAIAAE
 
 [node name="StartPlatform" parent="." unique_id=300417383 instance=ExtResource("8_b121j")]
 position = Vector2(195, 144)
+
+[node name="FinishPlatform" parent="." unique_id=953723389 instance=ExtResource("9_8c41q")]
+position = Vector2(-49, 80)
+
+[node name="Player" parent="." unique_id=106189195 instance=ExtResource("2_w7c3h")]
+position = Vector2(195, 101)
+collision_layer = 2
+collision_mask = 5
 
 [connection signal="body_entered" from="Deathzone" to="." method="_on_deathzone_body_entered"]
 [connection signal="body_exited" from="Objects/JumpPad" to="Objects/JumpPad" method="_on_body_exited"]
