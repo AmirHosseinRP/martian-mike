@@ -45,7 +45,7 @@ _data = {
 &"frames": SubResource("Animation_846d5")
 }
 
-[node name="Saw" type="Node2D" unique_id=538702520]
+[node name="Saw" type="Node2D" unique_id=538702520 groups=["trap"]]
 script = ExtResource("1_kprxg")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=669386224]
