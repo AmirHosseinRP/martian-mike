@@ -1,11 +1,16 @@
 extends Node2D
 
-@export var next_level: PackedScene = null
-
 @onready var start_platform: StartPlatform = $StartPlatform
 @onready var finish_platform: FinishPlatform = $FinishPlatform
 @onready var player: Player = $Player
 @onready var deathzone: Area2D = $Deathzone
+
+@export var next_level: PackedScene = null
+@export var level_time: int = 5
+
+var timer_node: Timer
+var time_remaining: int = level_time
+var is_level_won: bool = false
 
 
 func _ready() -> void:
@@ -18,6 +23,13 @@ func _ready() -> void:
 
 	finish_platform.body_entered.connect(_on_finish_platform_body_entered)
 	deathzone.body_entered.connect(_on_deathzone_body_entered)
+
+	timer_node = Timer.new()
+	timer_node.name = "LevelTimer"
+	timer_node.wait_time = 1
+	timer_node.timeout.connect(_on_timer_timeout)
+	add_child(timer_node)
+	timer_node.start()
 
 
 func _process(_delta: float) -> void:
@@ -43,6 +55,8 @@ func _on_trap_touched_player() -> void:
 
 func _on_finish_platform_body_entered(body: Node2D) -> void:
 	if body is Player:
+		is_level_won = true
+
 		finish_platform.animate()
 
 		player.isActive = false
@@ -51,3 +65,12 @@ func _on_finish_platform_body_entered(body: Node2D) -> void:
 
 		if next_level != null:
 			get_tree().change_scene_to_packed(next_level)
+
+
+func _on_timer_timeout() -> void:
+	if !is_level_won:
+		time_remaining -= 1
+
+		if time_remaining < 0:
+			time_remaining = level_time
+			reset_player()
