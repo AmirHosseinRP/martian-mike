@@ -8,11 +8,11 @@ extends Node2D
 @onready var hud: HUD = $UILayer/HUD
 
 @export var next_level: PackedScene = null
-@export var level_time: int = 5
+@export var level_time: int = 60
 @export var is_final_level: bool = false
 
 var timer_node: Timer
-var time_remaining: int = level_time
+var time_remaining: int
 var is_level_won: bool = false
 
 
@@ -26,6 +26,8 @@ func _ready() -> void:
 
 	finish_platform.body_entered.connect(_on_finish_platform_body_entered)
 	deathzone.body_entered.connect(_on_deathzone_body_entered)
+
+	time_remaining = level_time
 
 	timer_node = Timer.new()
 	timer_node.name = "LevelTimer"

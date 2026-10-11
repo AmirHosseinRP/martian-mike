@@ -6,4 +6,4 @@ extends Control
 
 
 func set_time_label(value: int) -> void:
-	time_label.text = "Time:" + str(value)
+	time_label.text = "Time: " + str(value)
