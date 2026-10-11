@@ -50,4 +50,5 @@ func update_animations(direction: float) -> void:
 
 
 func jump(force: int) -> void:
+	AudioPlayer.play_sfx(AudioPlayer.SFX.JUMP)
 	velocity.y = -force

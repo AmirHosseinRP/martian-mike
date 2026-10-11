@@ -40,6 +40,7 @@ func _ready() -> void:
 
 
 func reset_player() -> void:
+	AudioPlayer.play_sfx(AudioPlayer.SFX.HURT)
 	player.velocity = Vector2.ZERO
 	player.global_position = start_platform.get_spawn_pos()
 
