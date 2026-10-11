@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d0liywmywp6ur" path="res://scenes/bg.tscn" id="2_klq6b"]
 [ext_resource type="PackedScene" uid="uid://dqcidrv8gx6lu" path="res://scenes/level_2.tscn" id="2_olg7q"]
 [ext_resource type="PackedScene" uid="uid://c5hg7lddiimbq" path="res://scenes/player.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://ckwncc7mrxo7w" path="res://scenes/ui_layer.tscn" id="3_8iemx"]
 [ext_resource type="PackedScene" uid="uid://bl7inl4cv3pi1" path="res://scenes/jump_pad.tscn" id="4_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://vk3xr8v6tguj" path="res://scenes/deathzone.tscn" id="4_t1rx8"]
 [ext_resource type="PackedScene" uid="uid://8x6rkmdhvyhc" path="res://scenes/saw.tscn" id="5_ppgk2"]
@@ -15,6 +16,8 @@
 [node name="Level" type="Node2D" unique_id=1760409615]
 script = ExtResource("1_2q6dc")
 next_level = ExtResource("2_olg7q")
+
+[node name="UILayer" parent="." unique_id=740667286 instance=ExtResource("3_8iemx")]
 
 [node name="BG" parent="." unique_id=2046243649 instance=ExtResource("2_klq6b")]
 
@@ -33,16 +36,16 @@ position = Vector2(387, 163)
 
 [node name="Traps" type="Node" parent="." unique_id=659103465]
 
-[node name="Saw" parent="Traps" unique_id=538702520 groups=["trap"] instance=ExtResource("5_ppgk2")]
+[node name="Saw" parent="Traps" unique_id=538702520 instance=ExtResource("5_ppgk2")]
 position = Vector2(77, 161)
 
-[node name="Saw2" parent="Traps" unique_id=1461727144 groups=["trap"] instance=ExtResource("5_ppgk2")]
+[node name="Saw2" parent="Traps" unique_id=1461727144 instance=ExtResource("5_ppgk2")]
 position = Vector2(64, 120)
 
-[node name="SpikeBall" parent="Traps" unique_id=1040595279 groups=["trap"] instance=ExtResource("6_2r41h")]
+[node name="SpikeBall" parent="Traps" unique_id=1040595279 instance=ExtResource("6_2r41h")]
 position = Vector2(326, 163)
 
-[node name="SpikeBall2" parent="Traps" unique_id=411834447 groups=["trap"] instance=ExtResource("6_2r41h")]
+[node name="SpikeBall2" parent="Traps" unique_id=411834447 instance=ExtResource("6_2r41h")]
 position = Vector2(242, 159)
 
 [node name="WorldTiles" parent="." unique_id=607574519 instance=ExtResource("6_klq6b")]

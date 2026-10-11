@@ -4,9 +4,12 @@ extends Node2D
 @onready var finish_platform: FinishPlatform = $FinishPlatform
 @onready var player: Player = $Player
 @onready var deathzone: Area2D = $Deathzone
+@onready var ui_layer: UILayer = $UILayer
+@onready var hud: HUD = $UILayer/HUD
 
 @export var next_level: PackedScene = null
 @export var level_time: int = 5
+@export var is_final_level: bool = false
 
 var timer_node: Timer
 var time_remaining: int = level_time
@@ -31,17 +34,16 @@ func _ready() -> void:
 	add_child(timer_node)
 	timer_node.start()
 
-
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
-	elif Input.is_action_just_pressed("reset"):
-		get_tree().reload_current_scene()
+	hud.set_time_label(time_remaining)
 
 
 func reset_player() -> void:
 	player.velocity = Vector2.ZERO
 	player.global_position = start_platform.get_spawn_pos()
+
+
+func win() -> void:
+	ui_layer.show_win_screen(true)
 
 
 func _on_deathzone_body_entered(body: Node2D) -> void:
@@ -63,14 +65,19 @@ func _on_finish_platform_body_entered(body: Node2D) -> void:
 
 		await get_tree().create_timer(1.5).timeout
 
-		if next_level != null:
+		if next_level != null && !is_final_level:
 			get_tree().change_scene_to_packed(next_level)
+
+		if is_final_level:
+			win()
 
 
 func _on_timer_timeout() -> void:
 	if !is_level_won:
 		time_remaining -= 1
+		hud.set_time_label(time_remaining)
 
 		if time_remaining < 0:
 			time_remaining = level_time
+			hud.set_time_label(time_remaining)
 			reset_player()

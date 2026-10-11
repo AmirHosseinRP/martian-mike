@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d0liywmywp6ur" path="res://scenes/bg.tscn" id="1_p6vls"]
 [ext_resource type="Script" uid="uid://b6hntm6m1kkey" path="res://scripts/level.gd" id="1_wae8j"]
+[ext_resource type="PackedScene" uid="uid://ckwncc7mrxo7w" path="res://scenes/ui_layer.tscn" id="2_ha73p"]
 [ext_resource type="PackedScene" uid="uid://c5hg7lddiimbq" path="res://scenes/player.tscn" id="2_hhfj6"]
 [ext_resource type="Texture2D" uid="uid://d35we4gef8xxy" path="res://assets/textures/bg/Brown.png" id="2_wae8j"]
 [ext_resource type="PackedScene" uid="uid://dxlonqono4fy4" path="res://scenes/world_tiles.tscn" id="3_wae8j"]
@@ -11,6 +12,9 @@
 
 [node name="Level_3" type="Node2D" unique_id=858490530]
 script = ExtResource("1_wae8j")
+is_final_level = true
+
+[node name="UILayer" parent="." unique_id=740667286 instance=ExtResource("2_ha73p")]
 
 [node name="BG" parent="." unique_id=2046243649 instance=ExtResource("1_p6vls")]
 texture = ExtResource("2_wae8j")

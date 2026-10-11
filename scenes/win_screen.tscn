@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bhb2mudtb2cl0"]
+
+[ext_resource type="Script" uid="uid://c0vfhqw2w66i0" path="res://scripts/win_screen.gd" id="1_erk2x"]
+[ext_resource type="FontFile" uid="uid://cx1m2pgcbcdye" path="res://assets/fonts/Kenney Pixel Square.ttf" id="1_wv5lq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s508f"]
+font = ExtResource("1_wv5lq")
+font_size = 41
+outline_size = 11
+outline_color = Color(0, 0, 0, 1)
+
+[node name="WinScreen" type="Control" unique_id=360839065]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_erk2x")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=919706847]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.49019608)
+
+[node name="WinLabel" type="Label" parent="." unique_id=1385005811]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.0
+offset_top = -64.0
+offset_right = 114.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Win"
+label_settings = SubResource("LabelSettings_s508f")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=1245120067]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -59.0
+offset_top = 24.0
+offset_right = 59.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("1_wv5lq")
+text = "Ok"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
