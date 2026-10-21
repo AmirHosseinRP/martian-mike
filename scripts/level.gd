@@ -39,6 +39,11 @@ func _ready() -> void:
 	hud.set_time_label(time_remaining)
 
 
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("quit"):
+		get_tree().change_scene_to_file("res://scenes/start_menu.tscn")
+
+
 func reset_player() -> void:
 	AudioPlayer.play_sfx(AudioPlayer.SFX.HURT)
 	player.velocity = Vector2.ZERO
