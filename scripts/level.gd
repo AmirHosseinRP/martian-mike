@@ -44,6 +44,9 @@ func reset_player() -> void:
 	player.velocity = Vector2.ZERO
 	player.global_position = start_platform.get_spawn_pos()
 
+	time_remaining = level_time
+	hud.set_time_label(time_remaining)
+
 
 func win() -> void:
 	ui_layer.show_win_screen(true)

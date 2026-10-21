@@ -14,7 +14,7 @@
 
 [node name="Level_3" type="Node2D" unique_id=858490530]
 script = ExtResource("1_wae8j")
-level_time = 120
+level_time = 35
 is_final_level = true
 
 [node name="UILayer" parent="." unique_id=740667286 instance=ExtResource("2_ha73p")]
